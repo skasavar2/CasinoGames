@@ -7,11 +7,11 @@ const router = express.Router();
 
 router.post('/register', registerUser);
 router.post('/login', loginUser);
-router.post('/current',validateToken, currentUser);
-router.post('/current/balance',validateToken, currentUserBalance);
-router.post('/current/betrequest',validateToken, currentUserBetRequest);
-router.post('/current/resultrequest',validateToken, currentUserResultRequest);
-router.post('/current/rollbackrequest',validateToken, currentUserRollbackrequest);
+router.post('/',validateToken, currentUser);
+router.post('/balance',validateToken, currentUserBalance);
+router.post('/betrequest',validateToken, currentUserBetRequest);
+router.post('/resultrequest',validateToken, currentUserResultRequest);
+router.post('/rollbackrequest',validateToken, currentUserRollbackrequest);
 
 
 module.exports = router;

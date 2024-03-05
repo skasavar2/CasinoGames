@@ -18,7 +18,7 @@ const app = express();
 app.use(express.json());
 const PORT = process.env.PORT || 5001;
 //app.use("/api/contacts", require('./routes/contactRoutes'));
-app.use("/api/users", require("./routes/userRoutes"));
+app.use("/", require("./routes/userRoutes"));
 
 app.listen(PORT, () => {
     console.log(`listening on port ${PORT}`);
