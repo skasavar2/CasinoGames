@@ -6,7 +6,7 @@ const Contact = require("../models/contactModel");
 const Transaction = require("../models/transactionsModel");
 
 //@desc Register a user
-//@route POST /api/users/register
+//@route POST /register
 //@access public
 const registerUser = asyncHandler(async (req, res) => {
     console.log("The request body is :", req.body);
@@ -43,7 +43,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 //@desc Login user
-//@route POST /api/users/login
+//@route POST /login
 //@access public
 const loginUser = asyncHandler(async (req, res) => {
   
@@ -76,7 +76,7 @@ const loginUser = asyncHandler(async (req, res) => {
 });
 
 //@desc Current user info
-//@route POST /api/users/current
+//@route POST /current
 //@access private
 const currentUser = asyncHandler(async (req, res) => {
   const user1 = await User.find({ email: req.user.email });
@@ -84,7 +84,7 @@ const currentUser = asyncHandler(async (req, res) => {
 });
 
 //@desc Current balance info
-//@route POST /api/users/current/balance
+//@route POST /balance
 //@access private
 const currentUserBalance = asyncHandler(async (req, res) => {
   const user1 = await User.find({ email: req.user.email });
@@ -94,7 +94,7 @@ const currentUserBalance = asyncHandler(async (req, res) => {
 });
 
 //@desc Current bet request info
-//@route POST /api/users/current/betrequest
+//@route POST /betrequest
 //@access private
 const currentUserBetRequest = asyncHandler(async (req, res) => {
 
@@ -134,7 +134,7 @@ const currentUserBetRequest = asyncHandler(async (req, res) => {
 
 
 //@desc Current result request info
-//@route POST /api/users/current/resultrequest
+//@route POST /resultrequest
 //@access private
 const currentUserResultRequest = asyncHandler(async (req, res) => {
 
@@ -173,7 +173,7 @@ const currentUserResultRequest = asyncHandler(async (req, res) => {
 });
 
 //@desc Current Rollback request info
-//@route POST /api/users/current/rollbackrequest
+//@route POST /rollbackrequest
 //@access private
 const currentUserRollbackrequest = asyncHandler(async (req, res) => {
 
