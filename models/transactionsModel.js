@@ -36,7 +36,7 @@ const userSchema = mongoose.Schema(
             required:[true, "Please enter a transactionType"],
         },
         transactionAmount:{
-            type:String,
+            type:Number,
             required:[true, "Please enter a transactionAmount"],
         },
         betType: {

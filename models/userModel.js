@@ -18,7 +18,7 @@ const userSchema = mongoose.Schema(
             requires:[true,"Please enter a password"],
         },
         balance:{
-            type:String,
+            type:Number,
             requires:[true,"Please enter a balance"],
         },
         operatorId:{

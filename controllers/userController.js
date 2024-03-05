@@ -119,15 +119,7 @@ const currentUserBetRequest = asyncHandler(async (req, res) => {
   const user1 = await User.findOne({ userId: userId });
   console.log("user1");
   console.log(user1);
-  // Convert string variables to integers
-  var num1 = parseInt(user1.balance);
-  console.log(num1);
-  var num2 = parseInt(debitAmount);
-  console.log(num2);
-  num1 = num1 - num2;
-  user1.balance = num1;
-  console.log(num1);
-  console.log("updatedUser");
+  user1.balance -= debitAmount;
   var id1 = user1._id.toString();
   const updatedUser = await User.findByIdAndUpdate(
     id1,
@@ -136,7 +128,7 @@ const currentUserBetRequest = asyncHandler(async (req, res) => {
   );
   console.log("updatedUser");
 
-  var obj1 = {"balance":user1.balance, "status": "OP_SUCCESS"}
+  var obj1 = {"balance":user1.balance.toString(), "status": "OP_SUCCESS"}
   res.json(obj1);
 });
 
@@ -166,13 +158,7 @@ const currentUserResultRequest = asyncHandler(async (req, res) => {
   console.log("user1");
   console.log(user1);
   // Convert string variables to integers
-  var num1 = parseInt(user1.balance);
-  console.log(num1);
-  var num2 = parseInt(creditAmount);
-  console.log(num2);
-  num1 = num1 + num2;
-  user1.balance = num1;
-  console.log(num1);
+  user1.balance += creditAmount;
   console.log("updatedUser");
   var id1 = user1._id.toString();
   const updatedUser = await User.findByIdAndUpdate(
@@ -182,7 +168,7 @@ const currentUserResultRequest = asyncHandler(async (req, res) => {
   );
   console.log("updatedUser");
 
-  var obj1 = {"balance":user1.balance, "status": "OP_SUCCESS"}
+  var obj1 = {"balance":user1.balance.toString(), "status": "OP_SUCCESS"}
   res.json(obj1);
 });
 
@@ -211,13 +197,7 @@ const currentUserRollbackrequest = asyncHandler(async (req, res) => {
   console.log("user1");
   console.log(user1);
   // Convert string variables to integers
-  var num1 = parseInt(user1.balance);
-  console.log(num1);
-  var num2 = parseInt(rollbackAmount);
-  console.log(num2);
-  num1 = num1 + num2;
-  user1.balance = num1;
-  console.log(num1);
+  user1.balance += transactionAmount;
   console.log("updatedUser");
   var id1 = user1._id.toString();
   const updatedUser = await User.findByIdAndUpdate(
@@ -227,7 +207,7 @@ const currentUserRollbackrequest = asyncHandler(async (req, res) => {
   );
   console.log("updatedUser");
 
-  var obj1 = {"balance":user1.balance, "status": "OP_SUCCESS"}
+  var obj1 = {"balance":user1.balance.toString(), "status": "OP_SUCCESS"}
   res.json(obj1);
 });
 
