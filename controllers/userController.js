@@ -186,7 +186,52 @@ const currentUserResultRequest = asyncHandler(async (req, res) => {
   res.json(obj1);
 });
 
+//@desc Current Rollback request info
+//@route POST /api/users/current/rollbackrequest
+//@access private
+const currentUserRollbackrequest = asyncHandler(async (req, res) => {
+
+  console.log("The request body is :", req.body);
+  const { operatorId, token, userId,reqId,  transactionId,gameId,roundId, rollbackAmount, betType } = req.body;
+
+  // if (!operatorId || !userId1 || !reqId || !transactionId || !gameId || !roundId
+  //   || !debitAmount ||  !betType) {
+  //   res.status(400);
+  //   throw new Error("All fields are mandatory !");
+  // }
+  var transactionType = "Rollback";
+  var transactionAmount = rollbackAmount;
+  const contact = await Transaction.create({
+    operatorId, userId,reqId,  transactionId,gameId,roundId, transactionType, transactionAmount, betType
+  });
+
+  console.log("contact");
+  console.log(contact);
+  const user1 = await User.findOne({ userId: userId });
+  console.log("user1");
+  console.log(user1);
+  // Convert string variables to integers
+  var num1 = parseInt(user1.balance);
+  console.log(num1);
+  var num2 = parseInt(rollbackAmount);
+  console.log(num2);
+  num1 = num1 + num2;
+  user1.balance = num1;
+  console.log(num1);
+  console.log("updatedUser");
+  var id1 = user1._id.toString();
+  const updatedUser = await User.findByIdAndUpdate(
+    id1,
+    user1,
+    { new: true }
+  );
+  console.log("updatedUser");
+
+  var obj1 = {"balance":user1.balance, "status": "OP_SUCCESS"}
+  res.json(obj1);
+});
 
 
 
-module.exports = { registerUser, loginUser, currentUser,currentUserBalance,currentUserBetRequest,currentUserResultRequest };
+
+module.exports = { registerUser, loginUser, currentUser,currentUserBalance,currentUserBetRequest,currentUserResultRequest,currentUserRollbackrequest };
